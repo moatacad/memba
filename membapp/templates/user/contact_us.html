@@ -1,0 +1,73 @@
+{% extends "user/home_layout.html"%}
+{% block content %}
+<div class="content" style="background-color: white;padding:3em">
+    <div class="row">
+    <div class="col-md-12">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        Contact Us
+      </h3>
+      {% set done = get_flashed_messages() %}
+      {% if done:%}
+        {% for d in done%}
+        <span class="alert alert-success">{{ d }}</span>
+        {%endfor%}
+      {%endif%}
+      <form method="post" action="" novalidate enctype="multipart/form-data">
+        
+        {{ contact.csrf_token }}
+        <div class="mb-3 form-group row">
+            {{contact.confirm_email.label(class_='col-md-2')}}
+            <div class="col-md-6">
+                {{contact.confirm_email(class_='form-control border-success')}}{{ contact.confirm_email.errors}}
+            </div>
+        </div>
+        <div class="mb-3 form-group row">
+            {{contact.screenshot.label(class_='col-md-2')}}
+            <div class="col-md-6">
+                {{ contact.screenshot(class_='form-control border-success')}}{{ contact.screenshot.errors}}
+            </div>
+        </div>
+       
+        <div class="mb-3 form-group row">
+            {{ contact.email.label(class_='col-md-2') }}
+           
+            <div class="col-md-6">
+                {{ contact.email(class_='form-control border-success') }}
+            </div>
+            {% if contact.email.errors %}
+            {% for email_error in contact.email.errors %}
+                <div class="col-auto">
+                    <span class="alert alert-danger">{{ email_error }}</span>
+                </div>
+            {%endfor%}
+            {%endif%}
+        </div>
+        <div class="mb-3 form-group row">
+            {{ contact.message.label(class_='col-md-2') }}
+            <div class="col-md-6">
+                {{ contact.message(class_='form-control border-success') }}
+            </div>
+            {% if contact.message.errors %}
+            {% for msg_error in contact.message.errors %}
+                <div class="col-auto">
+                    <span class="alert alert-danger">{{ msg_error }}</span>
+                </div>
+            {%endfor%}
+            {%endif%}
+        </div>
+        <div class="mb-3 form-group row">
+            <div class="col">
+                {{ contact.submit(class_='btn btn-success btn-lg col-9')}}
+            </div>
+        </div>
+      </form>
+
+    </div>
+    
+  </div>
+
+
+
+   </div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "user/home_layout.html"%}
+  
+{% block content %}
+<div class="content" style="background-color: white;padding:3em">
+    <h3>Change Profile Picture</h3>
+
+    <form method="post" enctype="multipart/form-data" action="">
+        <div class="form-group row">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <label class="col-md-2">Select File</label>
+            <div class="col-md-3">
+                <input type="file" name="pix">
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-warning">Upload!</button>
+            </div>
+        </div>
+    </form>
+</div>
+ 
+{% endblock %}

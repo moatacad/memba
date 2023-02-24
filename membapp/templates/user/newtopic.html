@@ -1,0 +1,22 @@
+{% extends "user/home_layout.html"%}
+  
+{% block content %}
+<div class="content" style="background-color: white;padding:3em">
+  <h3>Post a New Topic </h3>
+   <form method="post" action="{{ url_for('newtopic')}}">
+    <div class="mb-3 form-group row">
+        <label class="col-md-2">Type Content:</label>
+        <div class="col-md-6">
+            <textarea class="form-control" name="content"></textarea>
+        </div>
+    </div>
+    <input type="hidden" name="csrf_token" id="csrf_token" value="{{csrf_token()}}">
+    <div class="mb-3 form-group row">         
+        <div class="col-md-6 offset-1">
+            <button class="btn btn-warning col-12">Post</button>
+        </div>
+    </div>
+   </form>
+ </div>
+ 
+{% endblock %}
